@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бриф на разработку лендинга</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #764ba2;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background: #e9ecef;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .radio-item:hover {
+            background: #e9ecef;
+        }
+
+        .radio-item input[type="radio"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Бриф на разработку лендинга</h1>
+            <p>Заполните форму для получения точной оценки проекта</p>
+        </div>
+
+        <div class="form-container">
+            <div class="note">
+                <strong>Внимание:</strong> Поля отмеченные <span class="required">*</span> обязательны для заполнения. Чем подробнее вы опишете проект, тем точнее будет оценка и быстрее реализация.
+            </div>
+
+            <form id="landingBrief">
+                <!-- Контактная информация -->
+                <div class="section">
+                    <h2 class="section-title">Контактная информация</h2>
+                    
+                    <div class="form-group">
+                        <label for="company">Название компании <span class="required">*</span></label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact_person">Контактное лицо <span class="required">*</span></label>
+                        <input type="text" id="contact_person" name="contact_person" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Телефон <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="website">Существующий сайт (если есть)</label>
+                        <input type="url" id="website" name="website" placeholder="https://example.com">
+                    </div>
+                </div>
+
+                <!-- О проекте -->
+                <div class="section">
+                    <h2 class="section-title">О проекте</h2>
+                    
+                    <div class="form-group">
+                        <label for="product_service">Что продаете/предлагаете? <span class="required">*</span></label>
+                        <textarea id="product_service" name="product_service" required placeholder="Опишите ваш продукт или услугу..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="target_audience">Целевая аудитория <span class="required">*</span></label>
+                        <textarea id="target_audience" name="target_audience" required placeholder="Кто ваши клиенты? Возраст, интересы, проблемы..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="main_goal">Главная цель лендинга <span class="required">*</span></label>
+                        <select id="main_goal" name="main_goal" required>
+                            <option value="">Выберите цель</option>
+                            <option value="lead_generation">Сбор контактов (лиды)</option>
+                            <option value="sales">Продажа товара/услуги</option>
+                            <option value="registration">Регистрация на мероприятие</option>
+                            <option value="download">Скачивание файла/приложения</option>
+                            <option value="subscription">Подписка на рассылку</option>
+                            <option value="consultation">Запись на консультацию</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="unique_proposition">Уникальное торговое предложение</label>
+                        <textarea id="unique_proposition" name="unique_proposition" placeholder="Чем вы отличаетесь от конкурентов? Какую пользу получит клиент?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Функциональность -->
+                <div class="section">
+                    <h2 class="section-title">Необходимая функциональность</h2>
+                    
+                    <div class="form-group">
+                        <label>Какие элементы должны быть на лендинге?</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="contact_form" name="features[]" value="contact_form">
+                                <label for="contact_form">Форма обратной связи</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="gallery" name="features[]" value="gallery">
+                                <label for="gallery">Галерея изображений</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="video" name="features[]" value="video">
+                                <label for="video">Видео</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="testimonials" name="features[]" value="testimonials">
+                                <label for="testimonials">Отзывы клиентов</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="calculator" name="features[]" value="calculator">
+                                <label for="calculator">Калькулятор стоимости</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="social_links" name="features[]" value="social_links">
+                                <label for="social_links">Соц. сети</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="chat" name="features[]" value="chat">
+                                <label for="chat">Онлайн-чат</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="map" name="features[]" value="map">
+                                <label for="map">Карта проезда</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additional_features">Дополнительные пожелания по функциональности</label>
+                        <textarea id="additional_features" name="additional_features" placeholder="Опишите любые специфические требования..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Дизайн -->
+                <div class="section">
+                    <h2 class="section-title">Дизайн и стиль</h2>
+                    
+                    <div class="form-group">
+                        <label>Предпочитаемый стиль дизайна</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="modern" name="design_style" value="modern">
+                                <label for="modern">Современный</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="classic" name="design_style" value="classic">
+                                <label for="classic">Классический</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="minimalist" name="design_style" value="minimalist">
+                                <label for="minimalist">Минимализм</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="corporate" name="design_style" value="corporate">
+                                <label for="corporate">Корпоративный</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="creative" name="design_style" value="creative">
+                                <label for="creative">Креативный</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="brand_colors">Фирменные цвета (если есть)</label>
+                        <input type="text" id="brand_colors" name="brand_colors" placeholder="Например: синий, белый, #FF5722">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="logo">Есть ли логотип?</label>
+                        <select id="logo" name="logo">
+                            <option value="">Выберите вариант</option>
+                            <option value="yes">Да, есть логотип</option>
+                            <option value="no">Нет, нужно создать</option>
+                            <option value="redesign">Есть, но нужно переделать</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="examples">Примеры понравившихся сайтов</label>
+                        <textarea id="examples" name="examples" placeholder="Укажите ссылки на сайты, которые вам нравятся..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Контент -->
+                <div class="section">
+                    <h2 class="section-title">Контент</h2>
+                    
+                    <div class="form-group">
+                        <label for="content_ready">Готовность контента</label>
+                        <select id="content_ready" name="content_ready">
+                            <option value="">Выберите вариант</option>
+                            <option value="ready">Весь контент готов</option>
+                            <option value="partially">Частично готов</option>
+                            <option value="need_help">Нужна помощь с созданием</option>
+                            <option value="copywriting">Нужен копирайтинг</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="photos">Фотоматериалы</label>
+                        <select id="photos" name="photos">
+                            <option value="">Выберите вариант</option>
+                            <option value="have">Есть качественные фото</option>
+                            <option value="need_retouch">Есть фото, нужна обработка</option>
+                            <option value="need_photos">Нужна фотосъемка</option>
+                            <option value="stock">Можно использовать стоковые</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Техническое -->
+                <div class="section">
+                    <h2 class="section-title">Технические требования</h2>
+                    
+                    <div class="form-group">
+                        <label for="hosting">Хостинг</label>
+                        <select id="hosting" name="hosting">
+                            <option value="">Выберите вариант</option>
+                            <option value="have">Есть хостинг</option>
+                            <option value="need_help">Нужна помощь с выбором</option>
+                            <option value="recommend">Посоветуйте хостинг</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="domain">Домен</label>
+                        <select id="domain" name="domain">
+                            <option value="">Выберите вариант</option>
+                            <option value="have">Домен зарегистрирован</option>
+                            <option value="need_register">Нужно зарегистрировать</option>
+                            <option value="subdomain">Поддомен основного сайта</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="analytics">Аналитика</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="google_analytics" name="analytics[]" value="google_analytics">
+                                <label for="google_analytics">Google Analytics</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="yandex_metrika" name="analytics[]" value="yandex_metrika">
+                                <label for="yandex_metrika">Яндекс.Метрика</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="facebook_pixel" name="analytics[]" value="facebook_pixel">
+                                <label for="facebook_pixel">Facebook Pixel</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="other_analytics" name="analytics[]" value="other_analytics">
+                                <label for="other_analytics">Другое</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Бюджет и сроки -->
+                <div class="section">
+                    <h2 class="section-title">Бюджет и сроки</h2>
+                    
+                    <div class="form-group">
+                        <label for="budget">Планируемый бюджет</label>
+                        <select id="budget" name="budget">
+                            <option value="">Выберите диапазон</option>
+                            <option value="50000-100000">50 000 - 100 000 руб</option>
+                            <option value="100000-200000">100 000 - 200 000 руб</option>
+                            <option value="200000-500000">200 000 - 500 000 руб</option>
+                            <option value="500000+">500 000+ руб</option>
+                            <option value="discuss">Обсудим индивидуально</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="deadline">Желаемый срок сдачи</label>
+                        <select id="deadline" name="deadline">
+                            <option value="">Выберите срок</option>
+                            <option value="asap">Как можно быстрее</option>
+                            <option value="1week">До 1 недели</option>
+                            <option value="2weeks">До 2 недель</option>
+                            <option value="1month">До 1 месяца</option>
+                            <option value="flexible">Гибкие сроки</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Дополнительно -->
+                <div class="section">
+                    <h2 class="section-title">Дополнительная информация</h2>
+                    
+                    <div class="form-group">
+                        <label for="competitors">Основные конкуренты</label>
+                        <textarea id="competitors" name="competitors" placeholder="Укажите сайты конкурентов, что вам нравится/не нравится у них..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additional_info">Дополнительные пожелания</label>
+                        <textarea id="additional_info" name="additional_info" placeholder="Любая дополнительная информация, которая поможет лучше понять ваши потребности..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Отправить бриф</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('landingBrief').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Сбор всех данных формы
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Обработка обычных полей
+            for (let [key, value] of formData.entries()) {
+                if (key.endsWith('[]')) {
+                    const cleanKey = key.replace('[]', '');
+                    if (!data[cleanKey]) {
+                        data[cleanKey] = [];
+                    }
+                    data[cleanKey].push(value);
+                } else {
+                    data[cleanKey] = value;
+                }
+            }
+            
+            // Создание красивого вывода
+            let output = "=== БРИФ НА РАЗРАБОТКУ ЛЕНДИНГА ===\n\n";
+            
+            output += "КОНТАКТНАЯ ИНФОРМАЦИЯ:\n";
+            output += `• Компания: ${data.company || 'Не указано'}\n`;
+            output += `• Контактное лицо: ${data.contact_person || 'Не указано'}\n`;
+            output += `• Email: ${data.email || 'Не указано'}\n`;
+            output += `• Телефон: ${data.phone || 'Не указано'}\n`;
+            output += `• Сайт: ${data.website || 'Не указано'}\n\n`;
+            
+            output += "О ПРОЕКТЕ:\n";
+            output += `• Продукт/услуга: ${data.product_service || 'Не указано'}\n`;
+            output += `• Целевая аудитория: ${data.target_audience || 'Не указано'}\n`;
+            output += `• Главная цель: ${data.main_goal || 'Не указано'}\n`;
+            output += `• УТП: ${data.unique_proposition || 'Не указано'}\n\n`;
+            
+            output += "ФУНКЦИОНАЛЬНОСТЬ:\n";
+            if (data.features && data.features.length > 0) {
+                output += `• Необходимые элементы: ${data.features.join(', ')}\n`;
+            }
+            output += `• Дополнительные пожелания: ${data.additional_features || 'Не указано'}\n\n`;
+            
+            output += "ДИЗАЙН:\n";
+            output += `• Стиль: ${data.design_style || 'Не указано'}\n`;
+            output += `• Фирменные цвета: ${data.brand_colors || 'Не указано'}\n`;
+            output += `• Логотип: ${data.logo || 'Не указано'}\n`;
+            output += `• Примеры: ${data.examples || 'Не указано'}\n\n`;
+            
+            output += "КОНТЕНТ:\n";
+            output += `• Готовность контента: ${data.content_ready || 'Не указано'}\n`;
+            output += `• Фотоматериалы: ${data.photos || 'Не указано'}\n\n`;
+            
+            output += "ТЕХНИЧЕСКИЕ ТРЕБОВАНИЯ:\n";
+            output += `• Хостинг: ${data.hosting || 'Не указано'}\n`;
+            output += `• Домен: ${data.domain || 'Не указано'}\n`;
+            if (data.analytics && data.analytics.length > 0) {
+                output += `• Аналитика: ${data.analytics.join(', ')}\n`;
+            }
+            output += "\n";
+            
+            output += "БЮДЖЕТ И СРОКИ:\n";
+            output += `• Бюджет: ${data.budget || 'Не указано'}\n`;
+            output += `• Срок: ${data.deadline || 'Не указано'}\n\n`;
+            
+            output += "ДОПОЛНИТЕЛЬНО:\n";
+            output += `• Конкуренты: ${data.competitors || 'Не указано'}\n`;
+            output += `• Доп. информация: ${data.additional_info || 'Не указано'}\n`;
+            
+            // Показываем результат
+            alert('Бриф заполнен! Данные выведены в консоль. В реальном проекте здесь будет отправка на сервер.');
+            console.log(output);
+            
+            // Создаем текстовый файл для скачивания
+            const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `brief_${data.company || 'client'}_${new Date().toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
